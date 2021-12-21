@@ -1,16 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import "../assets/css/styles.css";
 
-//import { Context as MessageContext } from "../context/MessageContext";
-//import Loader from "../components/Loader";
-console.log('file_SimpleLayout.js')
-
 const SimpleLayout = (props) => {
-
-  console.log('SimpleLayout.js')
-  //const { state } = useContext( MessageContext );
-
   return (
     <div className="" style={{backgroundColor: '#021524'}}>
       <div id="layoutAuthentication">

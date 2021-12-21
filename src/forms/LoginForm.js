@@ -1,16 +1,16 @@
 import React, { useState, useContext } from "react";
-import {Context as AuthContext} from "../context/AuthContext";
+import { Context as MessageContext } from "../context/MessageContext";
 
 console.log('file_LoginForm.js');
 
 const LoginForm = ({ onSubmitHandler }) => {
   console.log('LoginForm.js');
-  const [dataInput, setDataInput] = useState({ email: "", password: "", remember: "" });
-  //const { clearMessages } = useContext(AuthContext);
+  const [ dataInput, setDataInput ] = useState({ email: "", password: "", remember: "" });
+  const { resetAll } = useContext( MessageContext );
 
   const inputHandler = (e) => {
     e.persist();
-    //clearMessages();
+    resetAll();
     setDataInput({ ...dataInput, [e.target.id]: e.target.value });
   };
 
@@ -19,20 +19,40 @@ const LoginForm = ({ onSubmitHandler }) => {
 
       <div className="row mb-3">
         <div className="col-md-12">
-          <input className="form-control" id="email" type="email" value={ dataInput.email } onChange={ inputHandler } placeholder="email" />
+          <input 
+            className="form-control" 
+            id="email" 
+            type="email" 
+            value={ dataInput.email } 
+            onChange={ inputHandler } 
+            placeholder="email" 
+          />
         </div>
       </div>
 
       <div className="row mb-3">
         <div className="col-md-12">
-          <input className="form-control" id="password" type="password" value={ dataInput.password } onChange={ inputHandler } placeholder="password" />
+          <input 
+            className="form-control" 
+            id="password" 
+            type="password" 
+            value={ dataInput.password } 
+            onChange={ inputHandler } 
+            placeholder="password" 
+          />
         </div>
       </div>
 
       <div className="row mb-3">
         <div className="col-md-12">
           <div className="form-check mb-1">
-            <input className="form-check-input" id="remember" type="checkbox" value={ dataInput.remember } onChange={ inputHandler } />
+            <input 
+              className="form-check-input" 
+              id="remember" 
+              type="checkbox" 
+              value={ dataInput.remember } 
+              onChange={ inputHandler } 
+            />
             <label className="form-check-label" htmlFor="inputRememberPassword">ricordami</label>
           </div>
         </div>

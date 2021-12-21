@@ -1,23 +1,28 @@
 import React, { useState, useContext } from "react";
 
 import { Context as AuthContext } from "../context/AuthContext";
+import { Context as MessageContext } from "../context/MessageContext";
 import SimpleLayout from "../layouts/SimpleLayout";
 import LoginForm from "../forms/LoginForm";
 import Loader from "../components/Loader";
-import AuthService, { API_Login } from "../api/AuthService";
-
-console.log('file_Login.js');
+import Alert from "../components/Alert";
+import { API_Login } from "../api/AuthService";
 
 const Login = () =>{
-  console.log('Login.js');
+  
   const [ loading, setLoading ] = useState( false );
   const { setAuth } = useContext( AuthContext );
+  const { state: messages, addMessage, addError } = useContext( MessageContext );
 
   const tryLogin = async ( dataInput ) => {
     setLoading( true );
     await API_Login( dataInput, (data, message ) => {
-      if(data){
-        setAuth(data.token, data.username);
+      if( data ){
+        setAuth( data.token, data.username );
+        addMessage("Login effettuato con successo!")
+      }
+      else{
+        addError( message );
       }
       setLoading(false);
     });
@@ -40,7 +45,8 @@ const Login = () =>{
               <div className="card-body">
                 <LoginForm onSubmitHandler={ ( dataInput ) => tryLogin( dataInput )}  />
                 <div className="">            
-                  
+                  <Alert message={ messages.message } type='success' />      
+                  <Alert message={ messages.error } type='danger' /> 
                 </div>
               </div>              
               <div className="card-footer text-center py-3">
