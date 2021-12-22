@@ -3,11 +3,15 @@ import React from "react";
 const Alert = ({message,type}) => {
   if (message === "") return null;
 
-  const alertType = `mt-3 mb-3 alert alert-${type}`;
-  return (    
-    <div className={ alertType } role="alert">
-      { message }
-    </div>    
+  const alertType = `mb-0 alert alert-${type}`;
+  return ( 
+    <div className="card mb-2 mt-2">
+      <div className="card-body">
+        <div className={ alertType } role="alert">
+          { message }
+        </div>
+      </div>
+    </div>           
   );
 };
 

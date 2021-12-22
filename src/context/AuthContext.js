@@ -1,7 +1,5 @@
 import creaContext from "./_creaContext";
 
-console.log('file_AuthContext.js');
-
 const ilreducer = ( state, action ) => {
   switch (action.type) {
     case "set_user":

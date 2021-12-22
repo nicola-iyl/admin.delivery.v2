@@ -1,7 +1,5 @@
 import creaContext from "./_creaContext";
 
-console.log('file_MessageContext.js');
-
 const ilreducer = (state, action) => {
   switch (action.type) {
     case "add_message":
@@ -34,7 +32,7 @@ const addMessage = (dispatch) => {
   }
 }
 
-//per resettare tutti i messaggi di errore e non eccetto validazioni
+//per resettare tutti i messaggi di errore e non, eccetto validazioni
 const clearMessages = (dispatch) => {
   return () => {
     dispatch({ type:'clear_messages'})

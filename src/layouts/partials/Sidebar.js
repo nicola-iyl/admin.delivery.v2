@@ -27,7 +27,7 @@ const Sidebar = () => {
         <SideToggleItem label="Utenti" menu="userMenu" icon={ <FontAwesomeIcon icon={faUser}/> } />
         <SideSubMenuItem menu="userMenu">
             <Link className="nav-link" to="/users">Tutti</Link>
-            <Link className="nav-link" to="/register">Registra</Link>
+            <Link className="nav-link" to={ { pathname: '/users', search: '?action=add' } }>Nuovo</Link>
         </SideSubMenuItem>
 
         <SideToggleItem label="Shops" menu="shopsMenu" icon={ <FontAwesomeIcon icon={faStore}/> } />

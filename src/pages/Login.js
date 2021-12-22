@@ -8,7 +8,7 @@ import Loader from "../components/Loader";
 import Alert from "../components/Alert";
 import { API_Login } from "../api/AuthService";
 
-const Login = () =>{
+const Login = () => {
   
   const [ loading, setLoading ] = useState( false );
   const { setAuth } = useContext( AuthContext );

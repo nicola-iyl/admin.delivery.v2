@@ -1,10 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Context as MessageContext } from "../context/MessageContext";
 
-console.log('file_LoginForm.js');
-
 const LoginForm = ({ onSubmitHandler }) => {
-  console.log('LoginForm.js');
+  
   const [ dataInput, setDataInput ] = useState({ email: "", password: "", remember: "" });
   const { resetAll } = useContext( MessageContext );
 
