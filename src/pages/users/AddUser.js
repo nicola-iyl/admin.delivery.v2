@@ -14,20 +14,28 @@ const AddUser = () => {
   const [ loading, setLoading ] = useState( true );
   const { addMessage, addError, resetAll } = useContext( MessageContext );
 
-  useEffect( async () => {
+  useEffect( () => {
+    resetAll();
+    getRoles();
+    getShops();
+    setLoading(false);
+  },[]);
+
+  const getRoles = async () => {
     await API_GetRoles( ( data, message ) => {
       if(data){
         setRoles(data.data);
       }
     });
+  }
+
+  const getShops = async () => {
     await API_GetShops( (data , message) => {
       if(data){
         setShops(data.data);
       }
     });
-    resetAll();
-    setLoading(false);
-  },[]);
+  }
 
   const registerSubmit = async (dataInput) => {
     resetAll();
@@ -50,7 +58,7 @@ const AddUser = () => {
       { loading ? <Loader /> : null }
       <StandardPage title="Nuovo Utente"> 
         <div className="row">
-          <div className="col-md-4">
+          <div className="col-md-6">
             <UserForm 
               roles = { roles }
               shops = { shops }

@@ -10,6 +10,7 @@ import PublicRoute from "./router/PublicRoute";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
+import Shops from "./pages/Shops";
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
 
               <Route exac path="/"      element={<PrivateRoute><Dashboard /></PrivateRoute>}/>
               <Route exac path="/users" element={<PrivateRoute><Users /></PrivateRoute>}/>
+              <Route exac path="/shops" element={<PrivateRoute><Shops /></PrivateRoute>}/>
             </Routes>
           </BrowserRouter>
         </MessageProvider>        

@@ -6,6 +6,9 @@ export const sendResponse = (response, callback, error) => {
     else if(response.data.message){
       callback( false, response.data.message );
     }
+    else if(response.data.errors){
+      callback( false, response.data.errors );
+    }
     else if(response.data.validation_errors){
       callback( false, response.data.validation_errors );
     }

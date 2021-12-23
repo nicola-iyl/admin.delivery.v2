@@ -12,27 +12,31 @@ const UsersList = () => {
 
   const [ users, setUsers ] = useState([]);
   const [ loading, setLoading ] = useState( true );
-  const { resetAll } = useContext( MessageContext );
+  const { addMessage, addError, resetAll } = useContext( MessageContext );
 
-  useEffect( async () => {
-    resetAll();
-    await API_GetUsers( (data, message) => {
+  useEffect( () => {
+    getUsers();  
+  },[]);
+
+  const getUsers = async () => {
+    await API_GetUsers( async(data, message) => {
+      resetAll();
       if(data){
         setUsers( data.data.filter( (item) => item.id !== 1) ); //non faccio vedere l'utente con id 1 per sicurezza
       }      
       setLoading(false);
-    });  
-  },[ users ]);
+    });
+  }
 
   const deleteUser = async (id) => {
     if(window.confirm("Sicuro ?")){
       API_DeleteUser(id, ( result, message ) => {
         if( result ){
           setUsers( users.filter( user => user.id !== id ) );
-          alert('Utente eliminato!');
+          addMessage( "Utente eliminato con successo" );
         }
         else{
-          alert('Errore ' + message);
+          addError( message );
         }
       });
     } 
