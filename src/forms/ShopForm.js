@@ -1,7 +1,7 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context as MessageContext } from "../context/MessageContext";
 
-const ShopForm = ( { onSubmit, label } ) => {
+const ShopForm = ( { onSubmit, label, shop } ) => {
 
   const [dataInput, setDataInput] = useState({
     ragione_sociale: "",
@@ -21,6 +21,12 @@ const ShopForm = ( { onSubmit, label } ) => {
   });
 
   const { state , resetValidation } = useContext(MessageContext);
+
+  useEffect( () => {
+    if( shop ){
+      setDataInput(shop);
+    }
+  }, [ shop ]);
 
   const handleInput = (e) => {
     e.persist()
@@ -112,7 +118,7 @@ const ShopForm = ( { onSubmit, label } ) => {
       </div>
       <div className="row mb-3">
         <div className="col-md-4">
-          <select onChange={ handleInput } id="shop_type_id" className="form-control"  name="shop_type_id" >
+          <select onChange={ handleInput } value={ dataInput.shop_type_id } id="shop_type_id" className="form-control"  name="shop_type_id" >
             <option value="">seleziona</option>
             <option value="1">Pizzeria</option>
             <option value="2">Ristorante</option>

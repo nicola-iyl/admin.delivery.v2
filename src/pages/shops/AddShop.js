@@ -33,7 +33,7 @@ const AddShop = () => {
   return (
     <MasterLayout>
       { loading ? <Loader /> : null }
-      <StandardPage title="Nuovo Utente"> 
+      <StandardPage title="Nuovo Shop"> 
         <ShopForm onSubmit={ ( dataInput ) => { addSubmit( dataInput ) } } label="Aggiungi Shop" />
       </StandardPage>
     </MasterLayout>

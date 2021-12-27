@@ -28,3 +28,10 @@ export async function API_AddShop( dataInput, callback ){
     .then( ( response ) => { sendResponse( response, callback, null ) } )
     .catch( ( error ) => { sendResponse( false, callback, error ) } );
 }
+
+export async function API_UpdateShop( id, dataInput, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.put( 'shop/'+ id, dataInput, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}

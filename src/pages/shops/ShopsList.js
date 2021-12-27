@@ -21,7 +21,6 @@ const ShopsList = () => {
 
   const getShops = async ()=> {
     await API_GetShops( async(data, message) => {
-      resetAll();
       if(data){ setShops( data.data ); }      
       setLoading(false);
     });
