@@ -44,9 +44,9 @@ const Sidebar = () => {
 
         <SideToggleItem label="Configurazioni" menu="settingsMenu" icon={ <FontAwesomeIcon icon={faTools}/> } />
         <SideSubMenuItem menu="settingsMenu">
-            <Link className="nav-link" to="/settings">Tutte</Link>
-            <Link className="nav-link" to="/setting_types">Tipi</Link>
-            <Link className="nav-link" to={ { pathname: '/settings', search: '?action=add' } }>Nuovo</Link>
+            <Link className="nav-link" to="/setting_types">Tipologie</Link>
+            <Link className="nav-link" to="/settings">Settaggi</Link>
+            
         </SideSubMenuItem>
       
       </div>

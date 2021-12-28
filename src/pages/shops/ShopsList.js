@@ -36,8 +36,8 @@ const ShopsList = () => {
     if(window.confirm("Sicuro ?")){
       API_DeleteShop(id, ( result, message ) => {
         if( result ){
-          setShops( shops.filter( user => user.id !== id ) );
-          addMessage( "Utente eliminato con successo" );
+          setShops( shops.filter( shop => shop.id !== id ) );
+          addMessage( "Shop eliminato con successo" );
         }
         else{
           addError( message );

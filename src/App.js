@@ -11,6 +11,9 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Users from "./pages/Users";
 import Shops from "./pages/Shops";
+import Services from "./pages/Services";
+import Settings from "./pages/Settings";
+import SettingTypes from "./pages/SettingTypes";
 
 function App() {
   
@@ -20,11 +23,14 @@ function App() {
         <MessageProvider>
           <BrowserRouter>
             <Routes>
-              <Route exac path="/login" element={<PublicRoute><Login /></PublicRoute>}/>
+              <Route exac path="/login"    element={<PublicRoute><Login /></PublicRoute>}/>
 
-              <Route exac path="/"      element={<PrivateRoute><Dashboard /></PrivateRoute>}/>
-              <Route exac path="/users" element={<PrivateRoute><Users /></PrivateRoute>}/>
-              <Route exac path="/shops" element={<PrivateRoute><Shops /></PrivateRoute>}/>
+              <Route exac path="/"              element={<PrivateRoute><Dashboard /></PrivateRoute>}/>
+              <Route exac path="/users"         element={<PrivateRoute><Users /></PrivateRoute>}/>
+              <Route exac path="/shops"         element={<PrivateRoute><Shops /></PrivateRoute>}/>
+              <Route exac path="/services"      element={<PrivateRoute><Services /></PrivateRoute>}/>
+              <Route exac path="/settings"      element={<PrivateRoute><Settings /></PrivateRoute>}/>
+              <Route exac path="/setting_types" element={<PrivateRoute><SettingTypes /></PrivateRoute>}/>
             </Routes>
           </BrowserRouter>
         </MessageProvider>        

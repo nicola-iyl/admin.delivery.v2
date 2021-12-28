@@ -35,3 +35,66 @@ export async function API_UpdateShop( id, dataInput, callback ){
     .then( ( response ) => { sendResponse( response, callback, null ) } )
     .catch( ( error ) => { sendResponse( false, callback, error ) } );
 }
+
+export async function API_GetServices( callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.get( 'services', config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_GetService( id, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.get( 'service/'+ id, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_DeleteService( id, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.delete( 'service/'+ id, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_UpdateService( id, dataInput, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.put( 'service/'+ id, dataInput, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_AddService( dataInput, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.post( 'service', dataInput, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_GetSettingTypes( callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.get( 'setting_types', config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_DeleteSettingType( id, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.delete( 'setting_type/'+ id, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_GetSettingType( id, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.get( 'setting_type/'+ id, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_UpdateSettingType( id, dataInput, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.put( 'setting_type/'+ id, dataInput, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
