@@ -47,6 +47,10 @@ const ShopDetails = ({shop}) => {
         <li className="list-group-item w-50"><strong>P. Iva</strong>:</li>
         <li className="list-group-item w-50">{ shop.p_iva }</li>
       </ul>
+      <ul className="list-group list-group-horizontal mb-1">
+        <li className="list-group-item w-50"><strong>Sede legale</strong>:</li>
+        <li className="list-group-item w-50">{ shop.sede_legale }</li>
+      </ul>
     </div>
   );
 }
