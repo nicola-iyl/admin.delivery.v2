@@ -98,3 +98,31 @@ export async function API_UpdateSettingType( id, dataInput, callback ){
     .then( ( response ) => { sendResponse( response, callback, null ) } )
     .catch( ( error ) => { sendResponse( false, callback, error ) } );
 }
+
+export async function API_AddSettingType( dataInput, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.post( 'setting_type', dataInput, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_GetSettings( callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.get( 'settings_all', config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_DeleteSetting( id, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.delete( 'setting/'+ id, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_AddSetting( dataInput, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.post( 'setting', dataInput, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}

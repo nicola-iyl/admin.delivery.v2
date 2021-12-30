@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
 
 import MasterLayout from "../../layouts/MasterLayout";
 import StandardPage from "../../layouts/StandardPage";
@@ -11,7 +12,7 @@ import { sort } from "../../utilities/sort";
 const SettingTypesList = () => {
   const [ settingTypes, setSettingTypes ] = useState([]);
   const [ loading, setLoading ] = useState( true );
-  const { addMessage, addError, resetAll } = useContext( MessageContext );
+  const { addMessage, addError } = useContext( MessageContext );
 
   useEffect( () => {
     getSettingTypes();  
@@ -46,8 +47,13 @@ const SettingTypesList = () => {
 
   return(
     <MasterLayout>
-      { loading ? <Loader /> : null }
+      { loading ? <Loader /> : null }      
       <StandardPage title="Configurazioni Servizi"> 
+        <div className="card mb-2 mt-2">
+          <div className="card-body">
+            <Link className="btn btn-primary" to={{ pathname: '/setting_types', search: '?action=add' }}>Nuova Configurazione</Link>
+          </div>
+        </div>
         <TableSettingTypes
           sortBy = { (field) => sort( field, settingTypes, setSettingTypes ) } 
           sortByService = { sortByService }
