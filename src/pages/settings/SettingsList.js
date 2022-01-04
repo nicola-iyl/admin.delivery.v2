@@ -36,7 +36,7 @@ const SettingsList = () => {
     if(window.confirm("Sicuro ?")){
       API_DeleteSetting(id, ( result, message ) => {
         if( result ){
-          setSettings( settings.filter( setting => settings.id !== id ) );
+          setSettings( settings.filter( setting => setting.id !== id ) );
           addMessage( "Settaggio Configurazione eliminata con successo" );
         }
         else{

@@ -7,12 +7,12 @@ const SettingRow = ( { setting, onRemoveHandler } ) => {
   return (
     <tr>
       <td>{ setting.id }</td>
-      <td>{ setting.shop.name }</td>
+      <td>{ setting.shop.ragione_sociale }</td>
       <td>{ setting.settingType.name }</td>
       <td>{ setting.settingType.type }</td>
       <td>{ setting.value }</td>
       <td>
-        <Link to={ "/setting?action=edit&id=" + setting.id } className="btn btn-sm btn-primary">
+        <Link to={ "/settings?action=edit&id=" + setting.id } className="btn btn-sm btn-primary">
           <FontAwesomeIcon icon = { faEdit } />
         </Link>        
       </td>

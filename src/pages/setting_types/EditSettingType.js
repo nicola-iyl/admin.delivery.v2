@@ -44,6 +44,7 @@ const EditSettingType = ( { id } ) => {
       setLoading(false);
     });
   }
+  
   return (
     <MasterLayout>
       { loading ? <Loader /> : null }

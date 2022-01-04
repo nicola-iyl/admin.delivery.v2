@@ -113,16 +113,30 @@ export async function API_GetSettings( callback ){
     .catch( ( error ) => { sendResponse( false, callback, error ) } );
 }
 
+export async function API_GetSetting( id, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.get( 'settingByAdmin/'+ id, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
 export async function API_DeleteSetting( id, callback ){
   const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
-  await _API.delete( 'setting/'+ id, config )
+  await _API.delete( 'settingByAdmin/'+ id, config )
     .then( ( response ) => { sendResponse( response, callback, null ) } )
     .catch( ( error ) => { sendResponse( false, callback, error ) } );
 }
 
 export async function API_AddSetting( dataInput, callback ){
   const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
-  await _API.post( 'setting', dataInput, config )
+  await _API.post( 'settingByAdmin', dataInput, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } );
+}
+
+export async function API_UpdateSetting( id, dataInput, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.put( 'settingByAdmin/'+ id, dataInput, config )
     .then( ( response ) => { sendResponse( response, callback, null ) } )
     .catch( ( error ) => { sendResponse( false, callback, error ) } );
 }

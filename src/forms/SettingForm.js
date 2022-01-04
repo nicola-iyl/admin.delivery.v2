@@ -12,6 +12,7 @@ const SettingForm = ( { setting, label, onSubmit } ) => {
 
   const [ shops, setShops ] = useState( [] );
   const [ settingTypes, setSettingTypes ] = useState( [] );
+  const [ settingTypeSelected, setSettingTypeSelected] = useState( null );
   const { state , resetValidation } = useContext( MessageContext );
 
   useEffect( () => {
@@ -44,6 +45,46 @@ const SettingForm = ( { setting, label, onSubmit } ) => {
     resetValidation( e.target.id );
   }
 
+  const changeSettingType = (e) => {
+    handleInput(e);
+    
+    const copy = [...settingTypes];
+    const found = copy.find( element => element.id === parseInt(e.target.value ));
+    
+    setSettingTypeSelected( found );
+    console.log(settingTypeSelected);
+  }
+
+  const getInputForValue = () => {
+
+    if(settingTypeSelected === null) return null
+
+    switch (settingTypeSelected.type) {
+      case "boolean":
+        return (
+          <select  name="value" id="value" onChange={ (e) => handleInput(e)} placeholder="" value={ dataInput.value } className="form-control">
+            <option value="">seleziona</option>
+            <option value="1">Attivo</option>
+            <option value="0">Non attivo</option>
+          </select>
+        );        
+      case "number":
+        return (
+          <input type="number"  name="value" id="value" onChange={ (e) => handleInput(e)} value={ dataInput.value } className="form-control" />
+        );
+      case "string":
+        return (
+          <textarea  name="value" id="value" onChange={ (e) => handleInput(e)}  value={ dataInput.value } className="form-control"></textarea>
+        );
+      case "json":
+        return (
+          <textarea  name="value" id="value" onChange={ (e) => handleInput(e)}  value={ dataInput.value } className="form-control"></textarea>
+        );
+      default:
+        return null
+    }
+  }
+
   return (
     <form onSubmit={(e) => { e.preventDefault(); onSubmit( dataInput ) } }>
       <div className="row mb-3">            
@@ -51,23 +92,24 @@ const SettingForm = ( { setting, label, onSubmit } ) => {
           <label className="fst-italic" htmlFor="shop_id">Shop</label>   
           <select value={ dataInput.shop_id } className="form-control" id="shop_id" type="text" onChange={ (e) => handleInput(e) }>
             <option value="">seleziona shop</option>
-            { shops.map( (shop, i) => { return (<option key={ shop.id } value={ shop.id }>{ shop.name }</option>)})}
+            { shops.map( (shop, i) => { return (<option key={ shop.id } value={ shop.id }>{ shop.ragione_sociale }</option>)})}
           </select>
           <small className="text-danger">{state.validations ? state.validations.shop_id : null}</small>        
         </div>
         <div className="col-md-6">
           <label className="fst-italic" htmlFor="settingType_id">Configurazione</label>   
-          <select value={ dataInput.setting_type_id } className="form-control" id="setting_type_id" type="text" onChange={ (e) => handleInput(e) }>
-            <option value="">seleziona shop</option>
-            { settingTypes.map( (settingType, i) => { return (<option key={ settingType.id } value={ settingType.id }>{ settingType.label }</option>)})}
+          <select value={ dataInput.setting_type_id } className="form-control" id="setting_type_id" type="text" onChange={ (e) => changeSettingType(e) }>
+            <option value="">seleziona configurazione</option>
+            { settingTypes.map( (settingType, i) => { return (<option key={ settingType.id } value={ settingType.id }>{ settingType.name } - ({ settingType.type })</option>)})}
           </select>
           <small className="text-danger">{state.validations ? state.validations.setting_type_id : null}</small>   
         </div>          
       </div>
       <div className="row mb-3">
         <div className="col-md-12">
-          <label className="fst-italic" htmlFor="value">Valore</label>
-          <textarea className="form-control" id="value" onChange={ (e) => handleInput(e)} placeholder="descrizione" value={ dataInput.value }></textarea>
+          <label className="fst-italic" htmlFor="value">Valore </label>
+          { getInputForValue() }
+          <small>{ ( settingTypeSelected !== null ) ? settingTypeSelected.desc : null }</small>
         </div>
       </div>
       <div className="mt-4 mb-0">

@@ -9,7 +9,39 @@ import Loader from "../../components/Loader";
 import SettingForm from "../../forms/SettingForm";
 
 const AddSetting = () => {
-  return (<div></div>);
+
+  const [ loading, setLoading ] = useState( false );
+  const { addMessage, addError, resetAll } = useContext( MessageContext );
+  const navigate = useNavigate();
+
+  const addSubmit = async ( dataInput ) => {
+    resetAll();
+    setLoading(true);
+    await API_AddSetting( dataInput, ( data, message ) => {
+      
+      if(data){
+        addMessage('Nuovo Settaggio creato con successo!');
+        navigate('/settings');
+      }
+      else{
+        addError(message);
+      }
+      setLoading(false);
+    });
+  }
+
+  return (
+    <MasterLayout>
+      { loading ? <Loader /> : null }
+      <StandardPage title="Nuova Impostazione"> 
+        <div className="row">
+          <div className="col-md-6">
+            <SettingForm onSubmit={ ( dataInput ) => { addSubmit( dataInput ) } } label="Aggiungi Impostazione" />
+          </div>
+        </div>        
+      </StandardPage>
+    </MasterLayout>
+  );
 }
 
 export default AddSetting;
