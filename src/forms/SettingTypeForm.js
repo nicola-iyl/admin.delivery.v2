@@ -50,7 +50,7 @@ const SettingTypeForm = ( { settingType, label, onSubmit } ) => {
       <div className="row mb-3">            
         <div className="col-md-6">   
           <label className="fst-italic" htmlFor="service_id">Servizio</label>   
-          <select value={ dataInput.service_id } className="form-control" id="service_id" type="text" onChange={ (e) => handleInput(e) }>
+          <select value={ dataInput.service_id } className="form-control" id="service_id" onChange={ (e) => handleInput(e) }>
             <option value="">seleziona servizio</option>
             { services.map( (service, i) => { return (<option key={ service.id } value={ service.id }>{ service.name }</option>)})}
           </select>
@@ -58,7 +58,7 @@ const SettingTypeForm = ( { settingType, label, onSubmit } ) => {
         </div>
         <div className="col-md-6">
           <label className="fst-italic" htmlFor="type">Tipo</label>
-          <select value={ dataInput.type } className="form-control" id="type" type="text" onChange={ (e) => handleInput(e) }>
+          <select value={ dataInput.type } className="form-control" id="type" onChange={ (e) => handleInput(e) }>
             <option value="">seleziona tipo</option>
             <option value="boolean" >boolean</option>
             <option value="number">number</option>

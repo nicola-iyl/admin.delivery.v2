@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import ShopsList from "./shops/ShopsList";
 import AddShop from "./shops/AddShop";
 import EditShop from "./shops/EditShop";
+import AddServiceToShop from "./shops/AddServiceToShop";
 
 const Shops = () => {
 
@@ -21,6 +22,12 @@ const Shops = () => {
   else if( action === 'edit' ){
     return (
       <EditShop id = { id } />
+    );  
+  }
+  // FORM AGGIUNGI SERVIZIO ALLO SHOP
+  else if( action === 'addServiceToShop' ){
+    return (
+      <AddServiceToShop id = { id } />
     );  
   }
   // LISTA SHOPS

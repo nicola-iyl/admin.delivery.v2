@@ -1,9 +1,9 @@
 import React from "react";
-import { faTrash, faSearch, faEdit} from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faSearch, faEdit, faStar} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
-const ShopRow = ( { shop, setForDetails, onRemoveHandler } ) => {
+const ShopRow = ( { shop, setForDetails, setForServices, onRemoveHandler } ) => {
   return (
     <tr>
       <td>{shop.id}</td>
@@ -14,6 +14,11 @@ const ShopRow = ( { shop, setForDetails, onRemoveHandler } ) => {
       <td>{shop.tel}</td>
       <td>{shop.email}</td>
       <td>{shop.status}</td>
+      <td className="text-center">
+        <button onClick={() => { setForServices(shop.id) } } type="button" className="btn btn-sm btn-primary" >
+          <FontAwesomeIcon icon={ faStar } />
+        </button>   
+      </td>
       <td>
         <button onClick={() => { setForDetails(shop.id) } } type="button" className="btn btn-sm btn-primary" >
           <FontAwesomeIcon icon={ faSearch } />
