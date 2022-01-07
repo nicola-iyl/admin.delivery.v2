@@ -15,13 +15,15 @@ const SettingForm = ( { setting, label, onSubmit } ) => {
   const [ settingTypeSelected, setSettingTypeSelected] = useState( null );
   const { state , resetValidation } = useContext( MessageContext );
 
+  useEffect( () => { getShops(); getSettingTypes(); }, []);
+
   useEffect( () => {
     if( setting ){
-      setDataInput( setting );
+      setDataInput( setting );    
+      const found = settingTypes.find( element => element.id === parseInt( setting.settingType.id ));
+      setSettingTypeSelected( found );
     }
   }, [ setting ]);
-
-  useEffect( () => { getShops(); getSettingTypes(); }, []);
 
   const getShops = async() => {
     await API_GetShops(( data, message ) => {
@@ -47,17 +49,14 @@ const SettingForm = ( { setting, label, onSubmit } ) => {
 
   const changeSettingType = (e) => {
     handleInput(e);
-    
-    const copy = [...settingTypes];
-    const found = copy.find( element => element.id === parseInt(e.target.value ));
-    
+
+    const found = settingTypes.find( element => element.id === parseInt(e.target.value ));    
     setSettingTypeSelected( found );
-    console.log(settingTypeSelected);
   }
 
   const getInputForValue = () => {
 
-    if(settingTypeSelected === null) return null
+    if(settingTypeSelected === null || settingTypeSelected === undefined) return null
 
     switch (settingTypeSelected.type) {
       case "boolean":
@@ -109,7 +108,7 @@ const SettingForm = ( { setting, label, onSubmit } ) => {
         <div className="col-md-12">
           <label className="fst-italic" htmlFor="value">Valore </label>
           { getInputForValue() }
-          <small>{ ( settingTypeSelected !== null ) ? settingTypeSelected.desc : null }</small>
+          <small>{ ( settingTypeSelected ) ? settingTypeSelected.desc : null }</small>
         </div>
       </div>
       <div className="mt-4 mb-0">
