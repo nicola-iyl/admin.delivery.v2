@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import MasterLayout from "../../layouts/MasterLayout";
 import StandardPage from "../../layouts/StandardPage";
 import { Context as MessageContext } from "../../context/MessageContext";
-import { API_GetShop } from "../../api/ShopService";
+import { API_GetShop, API_AddServiceToShop } from "../../api/ShopService";
 import Loader from "../../components/Loader";
 import ServiceToShopForm from "../../forms/ServiceToShopForm";
 
@@ -30,7 +30,18 @@ const AddServiceToShop = ( { id } ) => {
   }
 
   const addSubmit = async ( dataInput ) => {
-
+    resetAll();
+    setLoading(true);
+    await API_AddServiceToShop( dataInput.shop_id, dataInput.service_id, ( data, message ) => {
+      if(data){
+        addMessage('Servizio aggiunto con successo!');
+        navigate('/shops');
+      }
+      else{
+        addError(message);
+      }
+      setLoading(false);
+    })
   }
 
   return (

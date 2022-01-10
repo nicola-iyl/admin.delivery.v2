@@ -7,13 +7,14 @@ import TableShops from "../../tables/TableShops";
 import { Context as MessageContext } from "../../context/MessageContext";
 import { API_GetShops, API_DeleteShop } from "../../api/ShopService";
 import Loader from "../../components/Loader";
-import { sort } from "../../utilities/sort";
+import { sort2 } from "../../utilities/sort2";
 
 const ShopsList = () => {
 
   const [ shops, setShops ] = useState([]);
   const [ loading, setLoading ] = useState( true );
-  const { addMessage, addError, resetAll } = useContext( MessageContext );
+  const [ sortUp, setSortUp ] = useState( true );
+  const { addMessage, addError } = useContext( MessageContext );
 
   useEffect( () => {
     getShops();  
@@ -51,7 +52,7 @@ const ShopsList = () => {
       { loading ? <Loader /> : null }
       <StandardPage title="Shops"> 
         <TableShops 
-          sortBy = { (field) => sort( field, shops, setShops ) } 
+          sortBy = { (field) => sort2( field, shops, setShops, sortUp, () => { setSortUp( !sortUp) } ) } 
           sortByType = { sortByType } 
           removeShop={ (id) => { deleteShop(id) }} 
           shops={ shops }/>

@@ -7,12 +7,13 @@ import TableSettings from "../../tables/TableSettings";
 import { Context as MessageContext } from "../../context/MessageContext";
 import { API_GetSettings, API_DeleteSetting } from "../../api/ShopService";
 import Loader from "../../components/Loader";
-import { sort } from "../../utilities/sort";
+import { sort2 } from "../../utilities/sort2";
 
 const SettingsList = () => {
 
   const [ settings, setSettings ] = useState([]);
   const [ loading, setLoading ] = useState( true );
+  const [ sortUp, setSortUp ] = useState( true );
   const { addMessage, addError } = useContext( MessageContext );
 
   useEffect( () => {
@@ -22,6 +23,12 @@ const SettingsList = () => {
   const sortBySettingType = () => {
     const copy = [...settings];
     copy.sort((a, b) => (a.settingType.name > b.settingType.name) ? 1 : -1);
+    setSettings(copy);
+  }
+
+  const sortByShop = () => {
+    const copy = [...settings];
+    copy.sort((a, b) => (a.shop.ragione_sociale > b.shop.ragione_sociale) ? 1 : -1);
     setSettings(copy);
   }
 
@@ -56,8 +63,9 @@ const SettingsList = () => {
           </div>
         </div>
         <TableSettings
-          sortBy = { (field) => sort( field, settings, setSettings ) } 
+          sortBy = { (field) => sort2( field, settings, setSettings, sortUp, () => { setSortUp( !sortUp) } ) } 
           sortBySettingType = { sortBySettingType }
+          sortByShop = { sortByShop }
           removeSetting = { (id) => { deleteSetting(id) }} 
           settings = { settings }/>
       </StandardPage>

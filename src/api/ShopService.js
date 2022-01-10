@@ -64,6 +64,13 @@ export async function API_UpdateService( id, dataInput, callback ){
     .catch( ( error ) => { sendResponse( false, callback, error ) } );
 }
 
+export async function API_AddServiceToShop( id_shop, id_service, callback ){
+  const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
+  await _API.get( 'service/add/'+ id_shop + '/' + id_service, config )
+    .then( ( response ) => { sendResponse( response, callback, null ) } )
+    .catch( ( error ) => { sendResponse( false, callback, error ) } )
+}
+
 export async function API_AddService( dataInput, callback ){
   const config = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },};
   await _API.post( 'service', dataInput, config )
@@ -140,3 +147,4 @@ export async function API_UpdateSetting( id, dataInput, callback ){
     .then( ( response ) => { sendResponse( response, callback, null ) } )
     .catch( ( error ) => { sendResponse( false, callback, error ) } );
 }
+

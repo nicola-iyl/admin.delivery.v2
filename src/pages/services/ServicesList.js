@@ -7,12 +7,14 @@ import TableServices from "../../tables/TableServices";
 import { API_GetServices, API_DeleteService } from "../../api/ShopService";
 import { Context as MessageContext } from "../../context/MessageContext";
 
-import { sort } from "../../utilities/sort";
+import { sort2 } from "../../utilities/sort2";
+
 
 const ServiceList = () => {
 
   const [ services, setServices ] = useState( [] );
   const [ loading, setLoading ] = useState( true );
+  const [ sortUp, setSortUp ] = useState( true );
   const { addMessage, addError } = useContext( MessageContext );
 
   useEffect( () => {
@@ -45,7 +47,7 @@ const ServiceList = () => {
       { loading ? <Loader /> : null }
       <StandardPage title="Servizi/Funzionalità"> 
         <TableServices 
-          sortBy = { (field) => sort( field, services, setServices ) } 
+          sortBy = { (field) => sort2( field, services, setServices, sortUp, () => { setSortUp( !sortUp) } ) } 
           removeService ={ ( id ) => { deleteService( id ) }} 
           services = { services }/>
       </StandardPage>

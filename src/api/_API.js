@@ -9,7 +9,7 @@ const instance = axios.create({
 });
 
 //codice per intercettare le chiamate con token non più valido
-instance.interceptors.response.use(response => {
+/*instance.interceptors.response.use(response => {
   return response;
 }, error => {
  if (error.response.status === 401) {
@@ -19,7 +19,7 @@ instance.interceptors.response.use(response => {
   window.location = '/login';
  }
  return error;
-});
+});*/
 //fine
 
 export default instance;

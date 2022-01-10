@@ -18,8 +18,13 @@ const Login = () => {
     setLoading( true );
     await API_Login( dataInput, (data, message ) => {
       if( data ){
-        setAuth( data.token, data.username );
-        addMessage("Login effettuato con successo!")
+        if( data.role_id !== 1){
+          addError("Errore! Non hai i permessi per accedere a questo pannello");
+        }
+        else{
+          setAuth( data.token, data.username );
+          addMessage("Login effettuato con successo!");
+        }        
       }
       else{
         addError( message );
