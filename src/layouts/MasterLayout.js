@@ -5,7 +5,6 @@ import Sidebar from "./partials/Sidebar";
 import Footer from "./partials/Footer";
 
 import "../assets/css/styles.css";
-import "../assets/js/scripts";
 
 const MasterLayout = (props) => {
   

@@ -16,12 +16,24 @@ const Navbar = () => {
     } );
   }
 
+  const sideNavbarToggle = () => {
+    const sidebarToggle = document.body.querySelector('#sidebarToggle');
+    if (sidebarToggle) {
+        // Uncomment Below to persist sidebar toggle between refreshes
+        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
+        //     document.body.classList.toggle('sb-sidenav-toggled');
+        // }
+        document.body.classList.toggle('sb-sidenav-toggled');
+        localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+    }
+  }
+
   return (
   <nav className="sb-topnav navbar navbar-expand navbar-dark"  style={{ backgroundColor: '#cb4132' }}>
     <Link className="navbar-brand ps-3" to="/">
       Admin Delivery
     </Link>
-    <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+    <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" onClick={ () => { sideNavbarToggle() } }>
       <FontAwesomeIcon icon={faBars}/>
     </button>
     <ul className="navbar-nav ms-auto ms-auto me-3 me-lg-4">
